@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ProFix Local</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-white text-slate-600 antialiased font-sans pb-20 md:pb-0">
+
+    <!-- NAVIGATION (Updated for Package 3) -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-slate-100 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition" onclick="window.location.href='index.html'">
+                <div class="bg-brand-600 text-white p-2.5 rounded-xl shadow-lg shadow-brand-500/30">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <span class="font-display font-bold text-xl text-slate-900 tracking-tight">ProFix<span class="text-brand-600">.</span></span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                <a href="index.html" class="hover:text-brand-600 transition">Home</a>
+                <a href="services.html" class="hover:text-brand-600 transition">Services</a>
+                <a href="portfolio.html" class="hover:text-brand-600 transition">Our Work</a>
+                <a href="blog.html" class="hover:text-brand-600 transition">Tips</a>
+                <a href="about.html" class="text-brand-600 font-bold">About Us</a>
+                <a href="contact.html" class="hover:text-brand-600 transition">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="tel:5551234567" class="hidden lg:flex flex-col items-end text-right hover:opacity-80 transition">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-brand-600">24/7 Emergency</span>
+                    <span class="text-sm font-bold text-slate-900">(555) 123-4567</span>
+                </a>
+                <button onclick="toggleModal(true)" class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-slate-800 transition shadow-xl">Book Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE STICKY BAR -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 z-40 flex gap-3 shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
+        <a href="tel:5551234567" class="flex-1 bg-brand-600 text-white font-bold rounded-lg py-3 text-center shadow-lg flex items-center justify-center gap-2">
+            Call Tech
+        </a>
+        <button onclick="toggleModal(true)" class="flex-1 bg-slate-100 text-slate-900 font-bold rounded-lg py-3 text-center border border-slate-200">
+            Book Online
+        </button>
+    </div>
+
+    <!-- ABOUT HERO -->
+    <header class="relative bg-slate-50 py-20 lg:py-28 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="reveal active">
+                <div class="inline-block px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-bold uppercase tracking-widest text-brand-600 mb-6 shadow-sm">
+                    Est. 2015
+                </div>
+                <h1 class="font-display text-4xl lg:text-6xl font-extrabold text-slate-900 mb-6 leading-tight">
+                    Not a franchise. <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-cyan-500">Just your neighbors.</span>
+                </h1>
+                <p class="text-lg text-slate-500 max-w-lg leading-relaxed mb-8">
+                    We started ProFix Local with one truck and a simple promise: Answer the phone, show up on time, and don't charge hidden fees. Ten years later, that's still how we do business.
+                </p>
+                <div class="flex items-center gap-6">
+                    <div class="flex -space-x-4">
+                        <img class="w-12 h-12 rounded-full border-4 border-white bg-slate-200" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100" alt="Team">
+                        <img class="w-12 h-12 rounded-full border-4 border-white bg-slate-200" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&h=100" alt="Team">
+                        <img class="w-12 h-12 rounded-full border-4 border-white bg-slate-200" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&h=100" alt="Team">
+                    </div>
+                    <div class="text-sm font-bold text-slate-900">
+                        <p>Family Owned & Operated</p>
+                        <p class="text-slate-400 font-normal">Based right here in town.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative reveal delay-200">
+                <div class="absolute inset-0 bg-brand-600 rounded-3xl rotate-3 opacity-10"></div>
+                <img src="https://images.unsplash.com/photo-1581578731117-104f2a412726?auto=format&fit=crop&q=80&w=800" class="relative rounded-3xl shadow-2xl border-4 border-white transform transition hover:-rotate-1 duration-500">
+            </div>
+        </div>
+    </header>
+
+    <!-- VALUES SECTION -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <h2 class="font-display text-3xl font-bold text-slate-900 mb-4">Why homeowners trust us.</h2>
+                <p class="text-slate-500 text-lg">We treat your home like it's our own mother's house. That means booties on our feet and mats on your floor.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-xl transition duration-300 reveal">
+                    <div class="w-14 h-14 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center mb-6 text-2xl">🛡️</div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-3">Licensed & Insured</h3>
+                    <p class="text-slate-500">We carry $2M in liability insurance. If anything goes wrong (it won't), you are 100% protected.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-xl transition duration-300 reveal">
+                    <div class="w-14 h-14 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center mb-6 text-2xl">💰</div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-3">Upfront Pricing</h3>
+                    <p class="text-slate-500">We price by the job, not the hour. You approve the exact price before we pick up a wrench.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-xl transition duration-300 reveal">
+                    <div class="w-14 h-14 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center mb-6 text-2xl">🧹</div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-3">The "Clean" Guarantee</h3>
+                    <p class="text-slate-500">If we leave a mess, we pay for a professional cleaning service to come tidy up. Period.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM SECTION (Builds Authority) -->
+    <section class="py-24 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+                <div>
+                    <h2 class="font-display text-3xl font-bold mb-2">Meet the Techs</h2>
+                    <p class="text-slate-400">Real people, not subcontractors.</p>
+                </div>
+                <a href="#" class="text-brand-400 font-bold hover:text-white mt-4 md:mt-0 transition">Join our team →</a>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6">
+                <!-- Team Member 1 -->
+                <div class="group relative overflow-hidden rounded-2xl reveal">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 transition duration-500">
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 to-transparent p-6">
+                        <p class="font-bold text-lg">Mike R.</p>
+                        <p class="text-brand-400 text-sm">Master Plumber</p>
+                    </div>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="group relative overflow-hidden rounded-2xl reveal">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 transition duration-500">
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 to-transparent p-6">
+                        <p class="font-bold text-lg">Sarah J.</p>
+                        <p class="text-brand-400 text-sm">Service Manager</p>
+                    </div>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="group relative overflow-hidden rounded-2xl reveal">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 transition duration-500">
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 to-transparent p-6">
+                        <p class="font-bold text-lg">David K.</p>
+                        <p class="text-brand-400 text-sm">Lead Installer</p>
+                    </div>
+                </div>
+                <!-- Team Member 4 -->
+                <div class="group relative overflow-hidden rounded-2xl reveal">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 transition duration-500">
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 to-transparent p-6">
+                        <p class="font-bold text-lg">James T.</p>
+                        <p class="text-brand-400 text-sm">Apprentice</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE (History) -->
+    <section class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="font-display text-3xl font-bold text-slate-900 text-center mb-16 reveal">Our History</h2>
+            
+            <div class="relative border-l-2 border-brand-200 ml-6 space-y-12">
+                <!-- Item 1 -->
+                <div class="relative pl-8 reveal">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-brand-600 border-4 border-white shadow-sm"></div>
+                    <p class="text-sm font-bold text-brand-600 mb-1">2015</p>
+                    <h3 class="text-xl font-bold text-slate-900">The Garage Days</h3>
+                    <p class="text-slate-500 mt-2">Mike starts the company out of his garage with one used van and a mission to be honest.</p>
+                </div>
+                <!-- Item 2 -->
+                <div class="relative pl-8 reveal">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-brand-600 border-4 border-white shadow-sm"></div>
+                    <p class="text-sm font-bold text-brand-600 mb-1">2018</p>
+                    <h3 class="text-xl font-bold text-slate-900">First Expansion</h3>
+                    <p class="text-slate-500 mt-2">We hired our first two employees and moved into a real shop on Main St.</p>
+                </div>
+                <!-- Item 3 -->
+                <div class="relative pl-8 reveal">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-brand-600 border-4 border-white shadow-sm"></div>
+                    <p class="text-sm font-bold text-brand-600 mb-1">2024</p>
+                    <h3 class="text-xl font-bold text-slate-900">Region's #1 Plumber</h3>
+                    <p class="text-slate-500 mt-2">Voted "Best of the City" for 3 years running. Now serving over 2,000 customers a year.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="bg-brand-50 py-20 border-t border-brand-100">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <h2 class="font-display text-4xl font-bold text-slate-900 mb-6">Ready to work with the pros?</h2>
+            <p class="text-slate-500 mb-10 text-lg">No sales pressure. Just honest answers and quality work.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button class="bg-brand-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-500 transition shadow-lg shadow-brand-500/30">Call (555) 123-4567</button>
+                <button onclick="toggleModal(true)" class="bg-white text-slate-900 px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition border border-slate-200">Book Online</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 py-12 border-t border-slate-800 text-center text-slate-400 text-sm">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="font-display text-2xl font-bold text-white mb-4">ProFix Local</h2>
+            <div class="flex justify-center space-x-6 text-slate-400 text-sm mb-8">
+                <a href="index.html" class="hover:text-white">Home</a>
+                <a href="services.html" class="hover:text-white">Services</a>
+                <a href="portfolio.html" class="hover:text-white">Our Work</a>
+                <a href="about.html" class="hover:text-white">About</a>
+            </div>
+            <p class="text-slate-600 text-sm">&copy; 2024 ProFix Local. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div id="modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-md p-8 relative shadow-2xl animate-fade-in-up">
+            <button onclick="toggleModal(false)" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 rounded-full p-1"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-slate-900 font-display">Book an Appointment</h3>
+            </div>
+            <form class="space-y-4" onsubmit="event.preventDefault(); alert('Request Sent!'); toggleModal(false);">
+                <input type="text" class="w-full px-4 py-3 rounded-lg border border-slate-200" placeholder="Name" required>
+                <input type="tel" class="w-full px-4 py-3 rounded-lg border border-slate-200" placeholder="Phone" required>
+                <button type="submit" class="w-full bg-brand-600 text-white font-bold py-4 rounded-xl shadow-lg">Request Appointment</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleModal(show) {
+            const modal = document.getElementById('modal');
+            if(show) modal.classList.remove('hidden');
+            else modal.classList.add('hidden');
+        }
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) reveals[i].classList.add("active");
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>
