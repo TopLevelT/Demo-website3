@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProFix Local - The Region's #1 Plumbing Team</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'blob': 'blob 7s infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        
+        /* Reveal Animation Utility */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Slider Styling */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            pointer-events: all;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #fff;
+            border: 4px solid #0284c7; 
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-600 antialiased font-sans pb-20 md:pb-0">
+
+    <!-- URGENCY BAR -->
+    <div class="bg-slate-900 text-white text-xs font-bold py-2 text-center tracking-wide z-[60] relative">
+        <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+        Status: 3 Technicians Available for Immediate Dispatch
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-slate-100 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition" onclick="window.location.href='index.html'">
+                <div class="bg-brand-600 text-white p-2.5 rounded-xl shadow-lg shadow-brand-500/30">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <span class="font-display font-bold text-xl text-slate-900 tracking-tight">ProFix<span class="text-brand-600">.</span></span>
+            </div>
+            
+            <!-- Desktop Links (Expanded for Package 3) -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                <a href="index.html" class="text-brand-600 font-bold">Home</a>
+                <a href="services.html" class="hover:text-brand-600 transition">Services</a>
+                <a href="blog.html" class="hover:text-brand-600 transition">Tips & News</a>
+                <a href="about.html" class="hover:text-brand-600 transition">About</a>
+                <a href="contact.html" class="hover:text-brand-600 transition">Contact</a>
+            </div>
+
+            <!-- CTA -->
+            <div class="flex items-center gap-4">
+                <a href="tel:5551234567" class="hidden lg:flex flex-col items-end text-right hover:opacity-80 transition">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-brand-600">24/7 Emergency</span>
+                    <span class="text-sm font-bold text-slate-900">(555) 123-4567</span>
+                </a>
+                <button onclick="toggleModal(true)" class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-slate-800 transition shadow-xl shadow-slate-900/20 transform hover:-translate-y-0.5 active:scale-95">
+                    Book Now
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE STICKY BOTTOM BAR -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 z-40 flex gap-3 shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
+        <a href="tel:5551234567" class="flex-1 bg-brand-600 text-white font-bold rounded-lg py-3 text-center shadow-lg flex items-center justify-center gap-2">
+            Call Tech
+        </a>
+        <button onclick="toggleModal(true)" class="flex-1 bg-slate-100 text-slate-900 font-bold rounded-lg py-3 text-center border border-slate-200">
+            Book Online
+        </button>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-12 pb-20 lg:pt-24 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                
+                <!-- Text Content -->
+                <div class="max-w-2xl reveal active">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-100 text-brand-600 text-xs font-bold uppercase tracking-wide mb-6">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse-slow"></span>
+                        Voted #1 in the County 2024
+                    </div>
+                    <h1 class="font-display text-5xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-6">
+                        Plumbing done <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-cyan-500">the right way.</span>
+                    </h1>
+                    <p class="text-lg text-slate-500 mb-8 leading-relaxed max-w-lg">
+                        We don't do "windows" of time. We give you an appointment, we show up, and we fix it right the first time.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="toggleModal(true)" class="px-8 py-4 bg-brand-600 text-white rounded-xl font-bold hover:bg-brand-500 transition shadow-lg shadow-brand-500/30 flex items-center justify-center transform hover:-translate-y-1">
+                            Get Instant Quote
+                        </button>
+                        <a href="services.html" class="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-xl font-bold hover:bg-slate-50 transition flex items-center justify-center group">
+                            Our Services
+                            <svg class="w-4 h-4 ml-2 text-slate-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Visuals -->
+                <div class="relative lg:h-[600px] w-full flex items-center justify-center reveal active delay-200 hidden md:flex">
+                    <div class="absolute top-0 -left-4 w-72 h-72 bg-brand-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                    <div class="absolute top-0 -right-4 w-72 h-72 bg-cyan-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+                    
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=1000" alt="Professional Plumber" class="relative z-10 w-full max-w-md rounded-3xl shadow-2xl border-4 border-white rotate-2 hover:rotate-0 transition duration-500 object-cover h-[500px]">
+                    
+                    <div class="absolute top-20 left-4 z-20 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 animate-float">
+                        <div class="bg-green-100 p-2 rounded-full text-green-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 font-bold uppercase">Status</p>
+                            <p class="text-sm font-bold text-slate-900">Licensed & Insured</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="bg-slate-900 text-white py-12 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-slate-800">
+                <div class="reveal">
+                    <p class="text-4xl font-bold font-display text-brand-500 mb-1">10+</p>
+                    <p class="text-xs uppercase tracking-widest text-slate-400">Years Active</p>
+                </div>
+                <div class="reveal">
+                    <p class="text-4xl font-bold font-display text-brand-500 mb-1">2k+</p>
+                    <p class="text-xs uppercase tracking-widest text-slate-400">Jobs Done</p>
+                </div>
+                <div class="reveal">
+                    <p class="text-4xl font-bold font-display text-brand-500 mb-1">60m</p>
+                    <p class="text-xs uppercase tracking-widest text-slate-400">Avg Response</p>
+                </div>
+                <div class="reveal">
+                    <p class="text-4xl font-bold font-display text-brand-500 mb-1">5/5</p>
+                    <p class="text-xs uppercase tracking-widest text-slate-400">Avg Rating</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICES PREVIEW -->
+    <section id="services" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <h2 class="text-brand-600 font-bold tracking-wide uppercase text-xs mb-3">Our Expertise</h2>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900 mb-4">We fix it all.</h2>
+                <p class="text-slate-500 text-lg">From emergency leaks to full installations, our trucks are stocked to finish the job in one visit.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 reveal cursor-pointer" onclick="window.location.href='services.html'">
+                    <div class="w-14 h-14 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-900 mb-3">Leak Detection</h3>
+                    <p class="text-slate-500 leading-relaxed">Hidden leaks cause rot. We find the source behind walls using thermal imaging.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="group p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 reveal cursor-pointer" onclick="window.location.href='services.html'">
+                    <div class="w-14 h-14 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-900 mb-3">Emergency Repair</h3>
+                    <p class="text-slate-500 leading-relaxed">Burst pipe? Clogged main? We have technicians on standby 24/7.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 reveal cursor-pointer" onclick="window.location.href='services.html'">
+                    <div class="w-14 h-14 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-900 mb-3">Water Heaters</h3>
+                    <p class="text-slate-500 leading-relaxed">Cold showers? We repair and install tankless and standard units same-day.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center reveal">
+                <a href="services.html" class="inline-block text-brand-600 font-bold hover:text-brand-800 transition">View Full Service Menu →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: BLOG TEASER (SEO Booster) -->
+    <section class="py-24 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+                <div>
+                    <h2 class="text-brand-600 font-bold tracking-wide uppercase text-xs mb-3">From the Blog</h2>
+                    <h2 class="font-display text-3xl font-bold text-slate-900">Latest Tips & News</h2>
+                </div>
+                <a href="blog.html" class="text-brand-600 font-bold hover:text-brand-800 mt-4 md:mt-0">Read all articles →</a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Blog Card 1 -->
+                <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition cursor-pointer reveal" onclick="window.location.href='blog.html'">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-brand-600 uppercase">Maintenance</span>
+                        <h3 class="font-display font-bold text-lg text-slate-900 mt-2 mb-2 group-hover:text-brand-600 transition">5 Signs Your Water Heater is About to Burst</h3>
+                        <p class="text-slate-500 text-sm">Don't wait for a flood. Learn the subtle sounds and signs.</p>
+                    </div>
+                </div>
+
+                <!-- Blog Card 2 -->
+                <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition cursor-pointer reveal" onclick="window.location.href='blog.html'">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-brand-600 uppercase">DIY Tips</span>
+                        <h3 class="font-display font-bold text-lg text-slate-900 mt-2 mb-2 group-hover:text-brand-600 transition">How to unclog a sink without chemicals</h3>
+                        <p class="text-slate-500 text-sm">Try this baking soda trick before calling us.</p>
+                    </div>
+                </div>
+
+                <!-- Lead Magnet Card (The "Dominator" Feature) -->
+                <div class="bg-brand-600 rounded-2xl p-8 text-white flex flex-col justify-center text-center reveal">
+                    <h3 class="font-display font-bold text-2xl mb-4">Free Survival Guide</h3>
+                    <p class="text-brand-100 text-sm mb-6">Join 1,200+ locals. Get our monthly checklist to prevent costly repairs.</p>
+                    <form onsubmit="event.preventDefault(); alert('Subscribed!');" class="space-y-3">
+                        <input type="email" placeholder="Your email address" class="w-full px-4 py-2 rounded-lg text-slate-900 text-sm focus:outline-none">
+                        <button class="w-full py-2 bg-slate-900 rounded-lg font-bold text-sm hover:bg-slate-800 transition">Get Free Guide</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BEFORE & AFTER SLIDER -->
+    <section class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 reveal">
+                    <h2 class="font-display text-3xl font-bold text-slate-900 mb-6">See the difference.</h2>
+                    <p class="text-lg text-slate-500 mb-8 leading-relaxed">
+                        We take pride in our clean installs. Use the slider to see how we transformed this utility closet from a disaster into a masterpiece.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-slate-700 font-medium"><div class="w-6 h-6 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center mr-3 text-xs">✓</div> Perfectly aligned copper piping</li>
+                        <li class="flex items-center text-slate-700 font-medium"><div class="w-6 h-6 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center mr-3 text-xs">✓</div> Clean workspace after we leave</li>
+                    </ul>
+                </div>
+                <div class="lg:w-1/2 w-full reveal">
+                    <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white select-none">
+                        <img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-brand-600 uppercase">After</div>
+                        <div id="before-img-container" class="absolute inset-0 w-full h-full">
+                            <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover">
+                            <div class="absolute top-4 left-4 bg-slate-900/80 text-white px-3 py-1 rounded-full text-xs font-bold uppercase">Before</div>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" id="slider" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20">
+                        <div id="slider-handle" class="absolute inset-y-0 left-1/2 w-1 bg-white z-10 pointer-events-none flex items-center justify-center shadow-lg">
+                            <div class="w-10 h-10 bg-brand-600 rounded-full flex items-center justify-center border-4 border-white shadow-xl">
+                                <svg class="w-5 h-5 text-white transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center text-xs text-slate-400 mt-4 uppercase tracking-widest">Drag slider to compare</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION / FOOTER -->
+    <section class="bg-slate-900 py-20 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <h2 class="font-display text-4xl font-bold text-white mb-6">Need a quote right now?</h2>
+            <p class="text-slate-400 mb-10 text-lg">Send us a photo of the problem and we can often give you a ballpark estimate over the phone.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button class="bg-brand-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-500 transition shadow-lg shadow-brand-900/50">Call (555) 123-4567</button>
+                <button onclick="toggleModal(true)" class="bg-slate-800 text-white px-8 py-4 rounded-xl font-bold hover:bg-slate-700 transition border border-slate-700">Book Online</button>
+            </div>
+            
+            <div class="mt-20 pt-10 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
+                <div class="mb-4 md:mb-0">
+                    <span class="font-bold text-slate-300">ProFix Local</span> &copy; 2024
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-white transition">Privacy</a>
+                    <a href="#" class="hover:text-white transition">Terms</a>
+                    <a href="blog.html" class="hover:text-white transition">Blog</a>
+                    <a href="services.html" class="hover:text-white transition">Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING MODAL -->
+    <div id="modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-md p-8 relative shadow-2xl animate-fade-in-up overflow-hidden">
+            <button onclick="toggleModal(false)" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 rounded-full p-1 transition z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <!-- Default Form View -->
+            <div id="modal-form-view">
+                <div class="text-center mb-6">
+                    <h3 class="text-2xl font-bold text-slate-900 font-display">Book a Technician</h3>
+                    <p class="text-slate-500 mt-2">We'll get back to you within 15 mins.</p>
+                </div>
+                
+                <form class="space-y-4" onsubmit="submitForm(event)">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Name</label>
+                        <input type="text" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-brand-500 outline-none transition" placeholder="John Doe" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Phone</label>
+                        <input type="tel" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-brand-500 outline-none transition" placeholder="(555) 123-4567" required>
+                    </div>
+                    <button type="submit" class="w-full bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition shadow-lg">
+                        Request Appointment
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success View (Hidden) -->
+            <div id="modal-success-view" class="hidden text-center py-8">
+                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900 mb-2">Request Received!</h3>
+                <p class="text-slate-500 mb-8">We have notified our dispatch team.</p>
+                <button onclick="toggleModal(false)" class="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-slate-800 transition">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function toggleModal(show) {
+            const modal = document.getElementById('modal');
+            const formView = document.getElementById('modal-form-view');
+            const successView = document.getElementById('modal-success-view');
+            if(show) {
+                modal.classList.remove('hidden');
+                formView.classList.remove('hidden');
+                successView.classList.add('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            const btn = event.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "Sending...";
+            setTimeout(() => {
+                document.getElementById('modal-form-view').classList.add('hidden');
+                document.getElementById('modal-success-view').classList.remove('hidden');
+                event.target.reset();
+                btn.innerHTML = originalText;
+            }, 1000);
+        }
+
+        const slider = document.getElementById('slider');
+        const beforeContainer = document.getElementById('before-img-container');
+        const handle = document.getElementById('slider-handle');
+
+        if(slider && beforeContainer && handle) {
+            slider.addEventListener('input', (e) => {
+                const value = e.target.value;
+                beforeContainer.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+                handle.style.left = `${value}%`;
+            });
+            beforeContainer.style.clipPath = `inset(0 50% 0 0)`;
+        }
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 150) reveals[i].classList.add("active");
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>
