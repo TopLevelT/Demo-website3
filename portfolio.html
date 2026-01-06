@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work & Case Studies - ProFix Local</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Filter Animation */
+        .project-card { transition: all 0.3s ease; }
+        .project-card.hidden { display: none; }
+        .project-card.show { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-600 antialiased font-sans pb-20 md:pb-0">
+
+    <!-- NAVIGATION (Package 3 Version with Blog Link) -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-slate-100 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition" onclick="window.location.href='index.html'">
+                <div class="bg-brand-600 text-white p-2.5 rounded-xl shadow-lg shadow-brand-500/30">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <span class="font-display font-bold text-xl text-slate-900 tracking-tight">ProFix<span class="text-brand-600">.</span></span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                <a href="index.html" class="hover:text-brand-600 transition">Home</a>
+                <a href="services.html" class="hover:text-brand-600 transition">Services</a>
+                <a href="portfolio.html" class="text-brand-600 font-bold">Our Work</a>
+                <a href="blog.html" class="hover:text-brand-600 transition">Tips & News</a>
+                <a href="contact.html" class="hover:text-brand-600 transition">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="tel:5551234567" class="hidden lg:flex flex-col items-end text-right hover:opacity-80 transition">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-brand-600">24/7 Emergency</span>
+                    <span class="text-sm font-bold text-slate-900">(555) 123-4567</span>
+                </a>
+                <button onclick="toggleModal(true)" class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-slate-800 transition shadow-xl">Book Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE STICKY BAR -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 z-40 flex gap-3 shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
+        <a href="tel:5551234567" class="flex-1 bg-brand-600 text-white font-bold rounded-lg py-3 text-center shadow-lg flex items-center justify-center gap-2">
+            Call Tech
+        </a>
+        <button onclick="toggleModal(true)" class="flex-1 bg-slate-100 text-slate-900 font-bold rounded-lg py-3 text-center border border-slate-200">
+            Book Online
+        </button>
+    </div>
+
+    <!-- HERO -->
+    <header class="bg-slate-900 py-20 lg:py-24 text-center">
+        <div class="max-w-4xl mx-auto px-6 reveal active">
+            <span class="text-brand-400 font-bold uppercase tracking-widest text-xs mb-4 block">Portfolio</span>
+            <h1 class="font-display text-4xl lg:text-6xl font-extrabold text-white mb-6">
+                Our Work Speaks for Itself
+            </h1>
+            <p class="text-lg text-slate-300 max-w-xl mx-auto">
+                From emergency leak repairs to full commercial repiping projects. See why we are the top-rated plumbing team in the county.
+            </p>
+        </div>
+    </header>
+
+    <!-- FILTER BAR -->
+    <section class="py-10 bg-white border-b border-slate-100 sticky top-20 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-3">
+            <button onclick="filterProjects('all')" class="filter-btn px-6 py-2 rounded-full bg-slate-900 text-white font-bold text-sm hover:bg-slate-800 transition active">All Projects</button>
+            <button onclick="filterProjects('residential')" class="filter-btn px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-600 font-bold text-sm hover:bg-slate-50 transition">Residential</button>
+            <button onclick="filterProjects('commercial')" class="filter-btn px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-600 font-bold text-sm hover:bg-slate-50 transition">Commercial</button>
+            <button onclick="filterProjects('emergency')" class="filter-btn px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-600 font-bold text-sm hover:bg-slate-50 transition">Emergency Fixes</button>
+        </div>
+    </section>
+
+    <!-- PROJECT GRID -->
+    <section class="py-16 px-6 max-w-7xl mx-auto min-h-screen">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="project-grid">
+            
+            <!-- Project 1 -->
+            <div class="project-card group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 reveal" data-category="residential">
+                <div class="h-64 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <div class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-slate-900">Residential</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Whole House PEX Repipe</h3>
+                    <p class="text-sm text-slate-500 mb-4">Replaced 50-year-old galvanized pipes that were causing low water pressure.</p>
+                    <div class="flex items-center gap-2 text-xs font-bold text-brand-600 uppercase tracking-wide">
+                        <span>Solution:</span>
+                        <span class="text-slate-600 normal-case">Installed Uponor PEX-A system.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 reveal" data-category="commercial">
+                <div class="h-64 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <div class="absolute top-4 left-4 bg-slate-900/90 text-white px-3 py-1 rounded-full text-xs font-bold">Commercial</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Restaurant Grease Trap</h3>
+                    <p class="text-sm text-slate-500 mb-4">Downtown bistro was experiencing major backups during dinner rush.</p>
+                    <div class="flex items-center gap-2 text-xs font-bold text-brand-600 uppercase tracking-wide">
+                        <span>Solution:</span>
+                        <span class="text-slate-600 normal-case">Hydro-jetted main line & installed new trap.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 reveal" data-category="emergency">
+                <div class="h-64 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1521207418485-99c705420785?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <div class="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold">Emergency</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Midnight Slab Leak</h3>
+                    <p class="text-sm text-slate-500 mb-4">Customer woke up to warm floors and the sound of rushing water.</p>
+                    <div class="flex items-center gap-2 text-xs font-bold text-brand-600 uppercase tracking-wide">
+                        <span>Solution:</span>
+                        <span class="text-slate-600 normal-case">Located leak electronically & bypassed pipe.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 reveal" data-category="residential">
+                <div class="h-64 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <div class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-slate-900">Residential</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Tankless Upgrade</h3>
+                    <p class="text-sm text-slate-500 mb-4">Replaced two 50-gallon tanks with one high-efficiency Navien unit.</p>
+                    <div class="flex items-center gap-2 text-xs font-bold text-brand-600 uppercase tracking-wide">
+                        <span>Solution:</span>
+                        <span class="text-slate-600 normal-case">Endless hot water & 30% gas savings.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-card group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 reveal" data-category="emergency">
+                <div class="h-64 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <div class="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold">Emergency</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Main Line Burst</h3>
+                    <p class="text-sm text-slate-500 mb-4">Tree roots crushed the main clay sewer line in the front yard.</p>
+                    <div class="flex items-center gap-2 text-xs font-bold text-brand-600 uppercase tracking-wide">
+                        <span>Solution:</span>
+                        <span class="text-slate-600 normal-case">Trenchless pipe bursting replacement.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="project-card group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 reveal" data-category="commercial">
+                <div class="h-64 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1517646287309-48b96e0318af?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <div class="absolute top-4 left-4 bg-slate-900/90 text-white px-3 py-1 rounded-full text-xs font-bold">Commercial</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Office Buildout</h3>
+                    <p class="text-sm text-slate-500 mb-4">Plumbing for new breakrooms and ADA compliant restrooms.</p>
+                    <div class="flex items-center gap-2 text-xs font-bold text-brand-600 uppercase tracking-wide">
+                        <span>Solution:</span>
+                        <span class="text-slate-600 normal-case">On-time finish for grand opening.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FEATURED CASE STUDY -->
+    <section class="bg-brand-50 py-24 border-t border-brand-100">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <span class="text-brand-600 font-bold uppercase tracking-widest text-xs mb-4 block">Case Study of the Month</span>
+                <h2 class="font-display text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Historic Victorian Home Restoration</h2>
+                <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                    This 1905 home still had original lead and galvanized piping. The owners wanted modern pressure and fixtures without damaging the original plaster walls and hardwood floors.
+                </p>
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-green-500 shadow-sm flex-shrink-0">✓</div>
+                        <p class="text-slate-600 text-sm">Surgically routed PEX through existing chases to avoid demolition.</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-green-500 shadow-sm flex-shrink-0">✓</div>
+                        <p class="text-slate-600 text-sm">Installed custom filtration to protect new fixtures.</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-green-500 shadow-sm flex-shrink-0">✓</div>
+                        <p class="text-slate-600 text-sm">Project completed in 3 days with zero damage to historical finishes.</p>
+                    </div>
+                </div>
+                <button onclick="toggleModal(true)" class="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-slate-800 transition">Start Your Project</button>
+            </div>
+            <div class="relative reveal delay-200">
+                <div class="absolute -inset-4 bg-white rounded-3xl shadow-xl transform rotate-2"></div>
+                <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&w=1200&q=80" class="relative rounded-2xl shadow-lg border border-slate-100">
+                <div class="absolute bottom-8 left-8 bg-white/95 backdrop-blur px-6 py-4 rounded-xl shadow-xl border border-slate-100">
+                    <p class="text-xs text-slate-500 uppercase font-bold mb-1">Project Value</p>
+                    <p class="text-2xl font-display font-bold text-slate-900">$18,500</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 py-12 border-t border-slate-800 text-center text-slate-400 text-sm">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="font-display text-2xl font-bold text-white mb-4">ProFix Local</h2>
+            <div class="flex justify-center space-x-6 text-slate-400 text-sm mb-8">
+                <a href="index.html" class="hover:text-white">Home</a>
+                <a href="services.html" class="hover:text-white">Services</a>
+                <a href="portfolio.html" class="hover:text-white">Our Work</a>
+                <a href="blog.html" class="hover:text-white">Blog</a>
+            </div>
+            <p class="text-slate-600 text-sm">&copy; 2024 ProFix Local. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div id="modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-md p-8 relative shadow-2xl animate-fade-in-up">
+            <button onclick="toggleModal(false)" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 rounded-full p-1"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-slate-900 font-display">Book an Appointment</h3>
+                <p class="text-slate-500 mt-2">We'll get back to you within 15 mins.</p>
+            </div>
+            <form class="space-y-4" onsubmit="event.preventDefault(); alert('Request Sent!'); toggleModal(false);">
+                <input type="text" class="w-full px-4 py-3 rounded-lg border border-slate-200" placeholder="Name" required>
+                <input type="tel" class="w-full px-4 py-3 rounded-lg border border-slate-200" placeholder="Phone" required>
+                <button type="submit" class="w-full bg-brand-600 text-white font-bold py-4 rounded-xl shadow-lg">Request Appointment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function toggleModal(show) {
+            const modal = document.getElementById('modal');
+            if(show) modal.classList.remove('hidden');
+            else modal.classList.add('hidden');
+        }
+
+        // Filter Logic
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const btns = document.querySelectorAll('.filter-btn');
+            
+            // Update Buttons
+            btns.forEach(btn => {
+                if(btn.innerText.toLowerCase().includes(category) || (category === 'all' && btn.innerText.includes('All'))) {
+                    btn.classList.remove('bg-white', 'border', 'border-slate-200', 'text-slate-600');
+                    btn.classList.add('bg-slate-900', 'text-white');
+                } else {
+                    btn.classList.add('bg-white', 'border', 'border-slate-200', 'text-slate-600');
+                    btn.classList.remove('bg-slate-900', 'text-white');
+                }
+            });
+
+            // Filter Cards
+            cards.forEach(card => {
+                if(category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                    card.classList.add('show');
+                } else {
+                    card.classList.remove('show');
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) reveals[i].classList.add("active");
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>
