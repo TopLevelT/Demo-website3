@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Heater Repair & Installation - ProFix Local</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .sticky-sidebar { position: sticky; top: 120px; }
+    </style>
+</head>
+<body class="bg-white text-slate-600 antialiased font-sans pb-20 md:pb-0">
+
+    <!-- NAVIGATION (Package 3 Version) -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-slate-100 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition" onclick="window.location.href='index.html'">
+                <div class="bg-brand-600 text-white p-2.5 rounded-xl shadow-lg shadow-brand-500/30">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <span class="font-display font-bold text-xl text-slate-900 tracking-tight">ProFix<span class="text-brand-600">.</span></span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                <a href="index.html" class="hover:text-brand-600 transition">Home</a>
+                <a href="services.html" class="text-brand-600 font-bold">Services</a>
+                <a href="portfolio.html" class="hover:text-brand-600 transition">Our Work</a>
+                <a href="blog.html" class="hover:text-brand-600 transition">Tips</a>
+                <a href="contact.html" class="hover:text-brand-600 transition">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="tel:5551234567" class="hidden lg:flex flex-col items-end text-right hover:opacity-80 transition">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-brand-600">24/7 Emergency</span>
+                    <span class="text-sm font-bold text-slate-900">(555) 123-4567</span>
+                </a>
+                <button onclick="toggleModal(true)" class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-slate-800 transition shadow-xl">Book Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE STICKY BAR -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 z-40 flex gap-3 shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
+        <a href="tel:5551234567" class="flex-1 bg-brand-600 text-white font-bold rounded-lg py-3 text-center shadow-lg flex items-center justify-center gap-2">
+            Call Tech
+        </a>
+        <button onclick="toggleModal(true)" class="flex-1 bg-slate-100 text-slate-900 font-bold rounded-lg py-3 text-center border border-slate-200">
+            Book Online
+        </button>
+    </div>
+
+    <!-- HERO -->
+    <header class="bg-slate-900 py-20 lg:py-28 relative overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=2000&q=80" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/90 to-transparent"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="reveal active">
+                <div class="inline-flex items-center gap-2 text-brand-400 text-sm font-bold uppercase tracking-widest mb-4">
+                    <a href="services.html" class="hover:text-white">Services</a> <span>/</span> <span>Water Heaters</span>
+                </div>
+                <h1 class="font-display text-4xl lg:text-6xl font-extrabold text-white mb-6">
+                    Never Take a Cold Shower Again.
+                </h1>
+                <p class="text-lg text-slate-300 mb-8 leading-relaxed">
+                    Whether you need a quick repair on your standard tank or a full upgrade to a high-efficiency tankless system, we get your hot water running the same day.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="toggleModal(true)" class="bg-brand-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-brand-900/50 hover:bg-brand-500 transition">
+                        Get Repair Quote
+                    </button>
+                    <button onclick="document.getElementById('comparison').scrollIntoView()" class="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-xl font-bold backdrop-blur-sm hover:bg-white/20 transition">
+                        Tank vs. Tankless
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENT GRID -->
+    <div class="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-12 gap-12">
+        
+        <!-- LEFT COLUMN: Main Content (8 cols) -->
+        <div class="lg:col-span-8 space-y-16">
+            
+            <!-- Intro Text -->
+            <div class="prose prose-lg prose-slate max-w-none reveal">
+                <h2 class="font-display text-3xl font-bold text-slate-900">Repair or Replace?</h2>
+                <p>
+                    The average water heater lasts 8-12 years. If yours is leaking, making rumbling noises, or failing to provide enough hot water, you have a decision to make.
+                </p>
+                <p>
+                    Our technicians carry the most common parts for Bradford White, Rheem, and AO Smith units, meaning we can fix 90% of issues on the first visit. However, if your unit is over 10 years old, replacement is often the more cost-effective choice.
+                </p>
+            </div>
+
+            <!-- COMPARISON TABLE (High Value Content) -->
+            <div id="comparison" class="scroll-mt-32 reveal">
+                <h3 class="font-display text-2xl font-bold text-slate-900 mb-6">Which system is right for you?</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse rounded-2xl overflow-hidden shadow-sm border border-slate-200">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200">
+                                <th class="p-4 font-bold text-slate-900">Feature</th>
+                                <th class="p-4 font-bold text-slate-900">Standard Tank</th>
+                                <th class="p-4 font-bold text-brand-600 bg-brand-50">Tankless (Recommended)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr class="border-b border-slate-100">
+                                <td class="p-4 font-bold text-slate-900">Lifespan</td>
+                                <td class="p-4 text-slate-600">8 - 12 Years</td>
+                                <td class="p-4 text-slate-900 font-bold bg-brand-50/30">20+ Years</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="p-4 font-bold text-slate-900">Hot Water Supply</td>
+                                <td class="p-4 text-slate-600">Limited (40-50 Gallons)</td>
+                                <td class="p-4 text-slate-900 font-bold bg-brand-50/30">Endless</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="p-4 font-bold text-slate-900">Energy Efficiency</td>
+                                <td class="p-4 text-slate-600">Heats water 24/7 (High Cost)</td>
+                                <td class="p-4 text-slate-900 font-bold bg-brand-50/30">Heats on Demand (Save 30%)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold text-slate-900">Space Required</td>
+                                <td class="p-4 text-slate-600">Large Closet / Garage</td>
+                                <td class="p-4 text-slate-900 font-bold bg-brand-50/30">Wall Mounted (Small)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PORTFOLIO INTEGRATION -->
+            <div class="reveal">
+                <div class="flex justify-between items-end mb-6">
+                    <h3 class="font-display text-2xl font-bold text-slate-900">Recent Installations</h3>
+                    <a href="portfolio.html" class="text-brand-600 font-bold text-sm hover:underline">View All Projects →</a>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="group rounded-2xl overflow-hidden shadow-sm border border-slate-100 relative cursor-pointer" onclick="window.location.href='portfolio.html'">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="p-4">
+                            <p class="text-xs font-bold text-slate-400 uppercase mb-1">North Hills</p>
+                            <h4 class="font-bold text-slate-900">Navien 240A Tankless Upgrade</h4>
+                        </div>
+                    </div>
+                    <div class="group rounded-2xl overflow-hidden shadow-sm border border-slate-100 relative cursor-pointer" onclick="window.location.href='portfolio.html'">
+                        <img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="p-4">
+                            <p class="text-xs font-bold text-slate-400 uppercase mb-1">Downtown</p>
+                            <h4 class="font-bold text-slate-900">Emergency Tank Replacement</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="reveal">
+                <h3 class="font-display text-2xl font-bold text-slate-900 mb-6">Water Heater FAQs</h3>
+                <div class="space-y-4">
+                    <details class="group bg-slate-50 rounded-xl p-4 border border-slate-100 cursor-pointer">
+                        <summary class="font-bold text-slate-900 flex justify-between items-center">
+                            How do I know if I need a new heater?
+                            <span class="text-brand-600 text-xl group-open:rotate-180 transition">+</span>
+                        </summary>
+                        <p class="text-slate-600 mt-2 text-sm leading-relaxed">If your unit is over 10 years old, leaking, or producing rusty water, it is time to replace. Repairing an old unit is often throwing good money after bad.</p>
+                    </details>
+                    <details class="group bg-slate-50 rounded-xl p-4 border border-slate-100 cursor-pointer">
+                        <summary class="font-bold text-slate-900 flex justify-between items-center">
+                            How long does installation take?
+                            <span class="text-brand-600 text-xl group-open:rotate-180 transition">+</span>
+                        </summary>
+                        <p class="text-slate-600 mt-2 text-sm leading-relaxed">A standard swap takes 2-4 hours. A tankless conversion typically takes 1 full day due to gas line and venting upgrades.</p>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: Sticky Sidebar (4 cols) -->
+        <div class="hidden lg:block lg:col-span-4 relative">
+            <div class="sticky-sidebar space-y-8">
+                
+                <!-- OFFER CARD -->
+                <div class="bg-slate-900 p-8 rounded-3xl shadow-xl text-white text-center relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl font-bold">SALE</div>
+                    <h3 class="font-display font-bold text-2xl mb-2 relative z-10">$150 OFF</h3>
+                    <p class="text-slate-400 text-sm mb-6 relative z-10">Any Tankless Water Heater Installation.</p>
+                    <div class="bg-white/10 p-4 rounded-xl mb-6 backdrop-blur-sm border border-white/10">
+                        <p class="text-xs uppercase font-bold text-slate-400 mb-1">Coupon Code</p>
+                        <p class="font-mono text-xl font-bold tracking-widest text-green-400">WARMUP24</p>
+                    </div>
+                    <button onclick="toggleModal(true)" class="w-full py-3 bg-brand-600 rounded-xl font-bold hover:bg-brand-500 transition shadow-lg relative z-10">
+                        Claim Offer
+                    </button>
+                </div>
+
+                <!-- BLOG INTEGRATION -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                    <h3 class="font-bold text-slate-900 mb-4">Maintenance Tips</h3>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="article.html" class="flex gap-3 group">
+                                <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                                    <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=100&q=80" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-slate-900 leading-tight group-hover:text-brand-600 transition">5 Signs Your Heater is About to Burst</h4>
+                                    <span class="text-[10px] text-slate-400 mt-1 block">3 min read</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="article.html" class="flex gap-3 group">
+                                <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                                    <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=100&q=80" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-slate-900 leading-tight group-hover:text-brand-600 transition">Why you should flush your tank annually</h4>
+                                    <span class="text-[10px] text-slate-400 mt-1 block">4 min read</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 py-12 border-t border-slate-800 text-center text-slate-400 text-sm">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="font-display text-2xl font-bold text-white mb-4">ProFix Local</h2>
+            <div class="flex justify-center space-x-6 text-slate-400 text-sm mb-8">
+                <a href="index.html" class="hover:text-white">Home</a>
+                <a href="services.html" class="hover:text-white">Services</a>
+                <a href="portfolio.html" class="hover:text-white">Work</a>
+            </div>
+            <p class="text-slate-600 text-sm">&copy; 2024 ProFix Local. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div id="modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-md p-8 relative shadow-2xl animate-fade-in-up">
+            <button onclick="toggleModal(false)" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 bg-slate-100 rounded-full p-1"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-slate-900 font-display">Book an Appointment</h3>
+                <p class="text-slate-500 mt-2">We'll get back to you within 15 mins.</p>
+            </div>
+            <form class="space-y-4" onsubmit="event.preventDefault(); alert('Request Sent!'); toggleModal(false);">
+                <input type="text" class="w-full px-4 py-3 rounded-lg border border-slate-200" placeholder="Name" required>
+                <input type="tel" class="w-full px-4 py-3 rounded-lg border border-slate-200" placeholder="Phone" required>
+                <button type="submit" class="w-full bg-brand-600 text-white font-bold py-4 rounded-xl shadow-lg">Request Appointment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function toggleModal(show) {
+            const modal = document.getElementById('modal');
+            if(show) modal.classList.remove('hidden');
+            else modal.classList.add('hidden');
+        }
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) reveals[i].classList.add("active");
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>
